@@ -4,7 +4,6 @@
     "module": "esnext", // 编译生成的目标模块系统
     "lib": ["dom", "es2015", "es2017"], // 配置需要包含的运行环境的类型定义
     "jsx": "react-jsx", // 配置 .tsx 文件的输出模式
-    "strict": true, // 开启严格模式
     "esModuleInterop": true, // 兼容 CommonJS 和 ES Module
     "moduleResolution": "node", // 配置模块的解析规则,支持 node 模块解析规则
     "noUnusedLocals": true, // 报告未使用的局部变量的错误

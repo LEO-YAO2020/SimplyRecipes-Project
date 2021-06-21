@@ -1,7 +1,33 @@
 import React from "react"
 import Layout from "../components/Layout"
+import { graphql, Link } from "gatsby"
+import RecipesList from "../components/recipesList"
 
-const Contact = () => {
+export const query = graphql`
+  {
+    allContentfulRecipe(
+      sort: { fields: title, order: ASC }
+      filter: { featured: { eq: true } }
+    ) {
+      nodes {
+        id
+        title
+        cookTime
+        prepTime
+        content {
+          tags
+        }
+        image {
+          gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
+        }
+      }
+    }
+  }
+`
+
+const Contact = props => {
+  const data = props.data.allContentfulRecipe
+  const recipes = data.nodes
   return (
     <Layout>
       <main className="page">
@@ -36,15 +62,22 @@ const Contact = () => {
               </div>
               <div className="form-row">
                 <label htmlFor="message">Message</label>
-                <textarea name="message" id="message" cols={30} rows={10}>
-                  
-                </textarea>
+                <textarea
+                  name="message"
+                  id="message"
+                  cols={30}
+                  rows={10}
+                ></textarea>
               </div>
               <button type="submit" className="btn block">
                 Submit
               </button>
             </form>
           </article>
+        </section>
+        <section className="featured-recipes">
+          <h5>Look at this Awesomesource!</h5>
+          <RecipesList recipes={recipes} />
         </section>
       </main>
     </Layout>
