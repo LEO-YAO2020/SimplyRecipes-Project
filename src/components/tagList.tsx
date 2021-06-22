@@ -1,9 +1,24 @@
+import { Link } from "gatsby"
 import React from "react"
+import slugify from "slugify"
+import setupTags, { TagsInter } from "../utils/setupTags"
+const TagList = (props: { recipes: Array<TagsInter> }) => {
+  const newTags = setupTags(props.recipes)
 
-const TagList = (props: React.PropsWithChildren<any>) => {
   return (
-    <div>
-      <h3>all tags</h3>
+    <div className="tags-container">
+      <h4>recipes</h4>
+      <div className="tags-list">
+        {newTags.map((tag, index) => {
+          const [text, value] = tag
+          const slug = slugify(text, { lower: true })
+          return (
+            <Link to={`/tags/${slug}`} key={index}>
+              {text} ({value})
+            </Link>
+          )
+        })}
+      </div>
     </div>
   )
 }

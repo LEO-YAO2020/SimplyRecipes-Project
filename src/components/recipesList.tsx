@@ -1,6 +1,7 @@
 import { Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import React from "react"
+import slugify from "slugify"
 
 interface recipeInter {
   id: number
@@ -15,8 +16,9 @@ const RecipesList = (props: React.PropsWithChildren<any>) => {
       {props.recipes.map((recipe: recipeInter) => {
         const { id, title, image, prepTime, cookTime } = recipe
         const pathToImage = getImage(image)
+        const slug = slugify(title, { lower: true })
         return (
-          <Link to={`/${title}`} key={id} className="recipe">
+          <Link to={`/${slug}`} key={id} className="recipe">
             <GatsbyImage
               image={pathToImage}
               alt={title}
