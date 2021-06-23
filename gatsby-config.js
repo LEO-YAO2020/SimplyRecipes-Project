@@ -8,6 +8,17 @@ require("dotenv").config({
 })
 module.exports = {
   /* Your site config here */
+  siteMetadata: {
+    title: "Simply Recipes",
+    description: "Nice and clean recipes site",
+    author: "@LEO YAO",
+    person: { name: "LEO", age: 24 },
+    simpleData: ["item 1", "item 2"],
+    complexData: [
+      { name: "LEO", age: 24 },
+      { name: "Claudia", age: 21 },
+    ],
+  },
   plugins: [
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-image`,
@@ -28,5 +39,23 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_API_KEY,
       },
     },
+    {
+      resolve: `gatsby-plugin-webfonts`,
+      options: {
+        fonts: {
+          google: [
+            {
+              family: "Montserrat",
+              variants: ["400"],
+            },
+            {
+              family: "Inconsolata",
+              variants: ["400", "500", "600", "700"],
+            },
+          ],
+        },
+      },
+    },
+    `gatsby-plugin-react-helmet`,
   ],
 }

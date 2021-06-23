@@ -2,6 +2,7 @@ import { graphql, Link } from "gatsby"
 import React from "react"
 import Layout from "../components/Layout"
 import setupTags from "../utils/setupTags"
+import SEO from '../components/SEO'
 
 export const query = graphql`
   {
@@ -19,6 +20,7 @@ const Tags = props => {
   const newTags = setupTags(props.data.allContentfulRecipe.nodes)
   return (
     <Layout>
+      <SEO title='tags' description=''/>
       <main className="page">
         <section className="tags-page">
           {newTags.map((tag, index) => {
