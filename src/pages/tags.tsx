@@ -3,6 +3,7 @@ import React from "react"
 import Layout from "../components/Layout"
 import setupTags from "../utils/setupTags"
 import SEO from '../components/SEO'
+import slugify from "slugify"
 
 export const query = graphql`
   {
@@ -25,8 +26,10 @@ const Tags = props => {
         <section className="tags-page">
           {newTags.map((tag, index) => {
             const [text, value] = tag
+            const slug = slugify(text, { lower: true })
+
             return (
-              <Link to={`/${text}`} key={index} className="tag">
+              <Link to={`/tags/${slug}`} key={index} className="tag">
 
                 <h5>{text}</h5>
                 <p>{value} recipe</p>
